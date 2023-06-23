@@ -17,7 +17,7 @@ export default function Login() {
         if (res.statusCode == 201 || res.statusCode == 200) {
           const data = res.data;
 
-          console.log(data);
+          // console.log(data);
 
           localStorage.setItem("_accessToken", data.access_token);
           localStorage.setItem("_refreshToken", data.refresh_token);
