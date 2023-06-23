@@ -1,4 +1,6 @@
-type UserProps = {
+import { AiOutlineEye, AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
+
+export type UserProps = {
   avatar: string;
   bio: string;
   email: string;
@@ -9,74 +11,58 @@ type UserProps = {
   _id: string;
 };
 
-interface UsersProps {
+export interface UsersProps {
   users: UserProps[];
+  handleShowUserDetails: (user: UserProps) => void;
 }
 
-export default function UserList({
-  users,
-}: // onView,
-// onViewUserDetail,
-// onEdit,
-// isEditing,
-// isEditingIndex,
-// onDelete,
-// showAddUser,
-// setShowAddUser,
-// setShowModal,
-UsersProps) {
+export default function UserList({ users, handleShowUserDetails }: UsersProps) {
   console.log(users);
 
-  return users.map((user: any, index: number) => (
-    <tr
-      key={user.id}
-      // className={`${isEditingIndex == index ? "bg-black/50" : ""}`}
-    >
-      <td className="p-2 border-2 border-black text-black">{index + 1}</td>
-      <td className="p-2 border-2 border-black text-black">{user.name}</td>
-      <td className="p-2 border-2 border-black text-black">{user.email}</td>
-      <td className="p-2 border-2 border-black text-black">
-        {user.jenis_kelamin}
-      </td>
-      <td className="p-2 border-2 border-black text-black">
-        {user.tanggal_lahir}
-      </td>
-      <td className="p-2 border-2 border-black text-black">
-        {user.tanggal_input}
-      </td>
+  return (
+    <div className="py-2 px-4 max-w-md bg-white rounded-lg border shadow-md dark:bg-gray-800 dark:border-gray-700">
+      <div className="mt-3 flex justify-between items-center mb-4">
+        <h3 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
+          Users List
+        </h3>
+      </div>
 
-      {/* buttons */}
-      <td className="p-2 border-2 border-black text-black">
-        <div className="flex justify-center items-center space-x-2">
-          <button
-            // onClick={() => {
-            //   onView(true);
-            //   onViewUserDetail(user);
-            // }}
-            className="px-10 py-2 text-black rounded-full transition-all duration-500 bg-gradient-to-tl from-green-500 via-yellow-500 to-red-400 bg-size-200 bg-pos-0 hover:bg-pos-100"
-          >
-            View
-          </button>
+      <ul className="divide-y divide-gray-200 dark:divide-gray-700">
+        {users.map((user: any) => (
+          <li key={user.id} className="py-3 sm:py-4">
+            <div className="flex items-center space-x-4">
+              <div className="flex-shrink-0">
+                <img
+                  className="w-8 h-8 rounded-full"
+                  src={user.avatar}
+                  alt="Neil image"
+                />
+              </div>
 
-          <button
-            // onClick={() => {
-            //   onEdit([true, index]);
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
+                  {user.name}
+                </p>
+                <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                  {user.email}
+                </p>
+              </div>
 
-            //   setShowAddUser(!showAddUser);
-            // }}
-            className="px-10 py-2 hover:text-black rounded-full transition-all duration-500 bg-gradient-to-tl from-blue-500 via-lightblue-500 to-blue-100/50 bg-size-200 bg-pos-0 hover:bg-pos-100"
-          >
-            Edit
-          </button>
-
-          <button
-            // onClick={() => onDelete()}
-            className="px-10 py-2 text-black rounded-full transition-all duration-500 bg-gradient-to-tl from-pink-900 via-red-700 to-yellow-100 bg-size-200 bg-pos-0 hover:bg-pos-100"
-          >
-            Delete
-          </button>
-        </div>
-      </td>
-    </tr>
-  ));
+              <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white space-x-4">
+                <button onClick={() => handleShowUserDetails(user)}>
+                  <AiOutlineEye style={{ fontSize: 20 }} />
+                </button>
+                <button>
+                  <AiOutlineEdit style={{ fontSize: 20 }} />
+                </button>
+                <button>
+                  <AiOutlineDelete style={{ fontSize: 20 }} />
+                </button>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
