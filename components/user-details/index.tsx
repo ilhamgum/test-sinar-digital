@@ -1,14 +1,21 @@
+import { useState, useEffect } from "react";
 import { UserProps } from "@components/user-list";
 
 type UserType = {
   user: UserProps;
   handleCloseUserDetails: () => void;
+  isEdit?: boolean;
 };
 
 export default function UserDetails({
   user,
   handleCloseUserDetails,
+  isEdit,
 }: UserType) {
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+
+  useEffect(() => {}, []);
+
   return (
     <div
       className="py-12 bg-gray-700 transition duration-150 ease-in-out z-10 fixed top-0 right-0 bottom-0 left-0"
@@ -61,7 +68,7 @@ export default function UserDetails({
               className="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm"
               onClick={handleCloseUserDetails}
             >
-              Cancel
+              Close
             </button>
           </div>
 

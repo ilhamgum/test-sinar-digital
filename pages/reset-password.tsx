@@ -1,8 +1,7 @@
 import { useAuth } from "@authContext";
 import AuthHead from "@components/heads/auth";
-import { login } from "@services/auth";
+import { resetPassword } from "@services/auth";
 import { useRouter } from "next/router";
-import { use } from "react";
 
 export default function Login() {
   const router = useRouter();
@@ -12,7 +11,7 @@ export default function Login() {
   const onSubmit = (e: any) => {
     e.preventDefault();
 
-    login("admin@admin.com", "password")
+    resetPassword("admin@admin.com")
       .then((res) => {
         if (res.statusCode == 201 || res.statusCode == 200) {
           const data = res.data;
@@ -47,11 +46,7 @@ export default function Login() {
       <body className="antialiased bg-slate-200 h-[100vh]">
         <div className="h-full flex justify-center items-center">
           <div className="w-[400px] bg-white p-8 rounded-xl shadow shadow-slate-300">
-            <h1 className="text-4xl text-center font-medium">Login</h1>
-
-            <p className="mt-2 text-slate-500 text-center">
-              Hi, Welcome back 👋
-            </p>
+            <h1 className="text-4xl text-center font-medium">Reset Password</h1>
 
             <form className="my-10">
               <div className="flex flex-col space-y-5">
@@ -69,31 +64,24 @@ export default function Login() {
                   />
                 </label>
 
-                <label htmlFor="password">
-                  <p className="font-medium text-slate-700 pb-2">Password</p>
-                  <input
-                    value={"password"}
-                    id="password"
-                    name="password"
-                    type="password"
-                    className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
-                    placeholder="Enter your password"
-                  />
-                </label>
+                <div className="flex justify-center items-center space-x-2">
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      router.push("/login");
+                    }}
+                    className="w-full py-3 font-medium text-indigo-600 border border-indigo-600 hover:bg-indigo-600 duration-300 hover:text-white rounded-lg hover:shadow inline-flex space-x-2 items-center justify-center"
+                  >
+                    <span>Back</span>
+                  </button>
 
-                <div
-                  onClick={() => router.push("/reset-password")}
-                  className="w-fit cursor-pointer text-blue-600 hover:text-blue-800 duration-300"
-                >
-                  <p>Forgot Password?</p>
+                  <button
+                    onClick={onSubmit}
+                    className="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center"
+                  >
+                    <span>Reset</span>
+                  </button>
                 </div>
-
-                <button
-                  onClick={onSubmit}
-                  className="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center"
-                >
-                  <span>Login</span>
-                </button>
               </div>
             </form>
           </div>
