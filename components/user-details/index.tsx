@@ -90,34 +90,38 @@ export default function UserDetails({
             type="email"
           />
 
-          <label
-            htmlFor="password"
-            className="text-gray-800 text-sm font-bold leading-tight tracking-normal"
-          >
-            Password
-          </label>
-          <input
-            ref={passwordRef}
-            disabled={!isAdd}
-            id="password"
-            className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
-            placeholder="*******"
-            type="password"
-          />
+          {isAdd ? (
+            <>
+              <label
+                htmlFor="password"
+                className="text-gray-800 text-sm font-bold leading-tight tracking-normal"
+              >
+                Password
+              </label>
+              <input
+                ref={passwordRef}
+                disabled={!isAdd}
+                id="password"
+                className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
+                placeholder="*******"
+                type="password"
+              />
 
-          <label
-            htmlFor="bio"
-            className="text-gray-800 text-sm font-bold leading-tight tracking-normal"
-          >
-            Bio
-          </label>
-          <input
-            ref={bioRef}
-            disabled={!isAdd}
-            id="bio"
-            className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
-            placeholder="Pariatur ipsum culpa aliquip culpa esse proident deserunt laborum exercitation nisi proident eu mollit. Occaecat ea eiusmod ullamco laborum laboris est. Sint quis non eu deserunt. Minim sint proident ipsum pariatur ea excepteur."
-          />
+              <label
+                htmlFor="bio"
+                className="text-gray-800 text-sm font-bold leading-tight tracking-normal"
+              >
+                Bio
+              </label>
+              <input
+                ref={bioRef}
+                disabled={!isAdd}
+                id="bio"
+                className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
+                placeholder="Pariatur ipsum culpa aliquip culpa esse proident deserunt laborum exercitation nisi proident eu mollit. Occaecat ea eiusmod ullamco laborum laboris est. Sint quis non eu deserunt. Minim sint proident ipsum pariatur ea excepteur."
+              />
+            </>
+          ) : null}
 
           <div className="flex items-center justify-start w-full">
             {isAdd ? (
