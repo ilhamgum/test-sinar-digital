@@ -9,3 +9,9 @@ export const getUsers = async () => {
     },
   });
 };
+export const deleteUser = async (id: string) => {
+  return await apiRequest({
+    url: `/users/${id}`,
+    method: "delete",
+  });
+};

@@ -13,7 +13,7 @@ export default function Home() {
     useState<boolean>(false);
   const [selectedUser, setSelectedUser] = useState<any>(null);
 
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, refresher } = useAuth();
 
   const handleShowUserDetails = (user: UserProps) => {
     setShowUserDetailsModal(true);
@@ -31,7 +31,7 @@ export default function Home() {
         setUsers(res.data.docs);
       });
     }
-  }, []);
+  }, [refresher]);
 
   return (
     <Layout>

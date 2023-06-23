@@ -19,6 +19,8 @@ interface AuthContextProps {
   setIsLoggedIn: (value: boolean) => void;
   userData: userDataProps;
   setUserData: (value: userDataProps) => void;
+  refresher: boolean;
+  handleRefresher: () => void;
 }
 
 export const AuthContext = createContext<AuthContextProps | null>(null);
@@ -33,11 +35,20 @@ export const AuthProvider = ({ children }: ReactChildren | any): ReactNode => {
     name: "",
   });
 
+  // refresher
+  const [refresher, setRefresher] = useState<boolean>(false);
+
+  const handleRefresher = () => {
+    setRefresher(!refresher);
+  };
+
   const value: AuthContextProps = {
     isLoggedIn,
     setIsLoggedIn,
     userData,
     setUserData,
+    refresher,
+    handleRefresher,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

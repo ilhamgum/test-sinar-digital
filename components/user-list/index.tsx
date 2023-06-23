@@ -1,3 +1,5 @@
+import { useAuth } from "@authContext";
+import { deleteUser } from "@services/users";
 import { AiOutlineEye, AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 
 export type UserProps = {
@@ -17,7 +19,15 @@ export interface UsersProps {
 }
 
 export default function UserList({ users, handleShowUserDetails }: UsersProps) {
-  console.log(users);
+  const { handleRefresher } = useAuth();
+
+  const handleUserDelete = (id: string) => {
+    deleteUser(id).then((res) => {
+      console.log(res);
+
+      handleRefresher();
+    });
+  };
 
   return (
     <div className="py-2 px-4 max-w-md bg-white rounded-lg border shadow-md dark:bg-gray-800 dark:border-gray-700">
@@ -55,7 +65,7 @@ export default function UserList({ users, handleShowUserDetails }: UsersProps) {
                 <button>
                   <AiOutlineEdit style={{ fontSize: 20 }} />
                 </button>
-                <button>
+                <button onClick={() => handleUserDelete(user._id)}>
                   <AiOutlineDelete style={{ fontSize: 20 }} />
                 </button>
               </div>

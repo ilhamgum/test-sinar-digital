@@ -7,6 +7,7 @@ type apiRequestTypes = {
   method: string;
   headers?: any;
   data?: any;
+  params?: any;
 };
 
 export const BASE_URL = "https://api-test.sinardigital.co.id";
@@ -20,12 +21,14 @@ const apiRequest = async ({
   method,
   headers = defaultHeaders,
   data,
+  params,
 }: apiRequestTypes) => {
   const response = await axios({
     url: `${BASE_URL}${url}`,
     method,
     headers,
     data,
+    params,
   });
 
   return response.data;
