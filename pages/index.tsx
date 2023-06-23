@@ -35,16 +35,68 @@ export default function Home() {
 
   return (
     <Layout>
-      <UserList users={users} handleShowUserDetails={handleShowUserDetails} />
+      <div
+        className="flex overflow-hidden"
+        style={{ maxHeight: "calc(100vh - 50px)" }}
+      >
+        <div className="basis-1/3">
+          <UserList
+            users={users}
+            handleShowUserDetails={handleShowUserDetails}
+          />
+        </div>
 
-      {showUserDetailsModal ? (
-        // <div className="fixed w-full h-full top-0 bottom-0 left-0 right-0">
+        <div className="flex flex-col items-center basis-2/3">
+          <div className="w-full h-[300px]">
+            <img
+              className="h-full w-full object-top"
+              src={selectedUser?.avatar}
+              alt="Image"
+            />
+          </div>
+
+          <div className="mt-4 w-full px-4">
+            <label className="text-gray-800 text-sm font-bold leading-tight tracking-normal">
+              Name
+            </label>
+            <input
+              disabled
+              id="name"
+              value={selectedUser?.name}
+              className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
+            />
+
+            <label className="text-gray-800 text-sm font-bold leading-tight tracking-normal">
+              Email
+            </label>
+            <input
+              disabled
+              id="email"
+              value={selectedUser?.email}
+              className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
+              type="email"
+            />
+
+            <label className="text-gray-800 text-sm font-bold leading-tight tracking-normal">
+              Bio
+            </label>
+            <input
+              disabled
+              id="email"
+              value={selectedUser?.bio}
+              className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
+              type="email"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* {showUserDetailsModal ? (
         <UserDetails
           user={selectedUser}
           handleCloseUserDetails={handleCloseUserDetails}
         />
-      ) : // </div>
-      null}
+      ) : null} */}
     </Layout>
   );
 }

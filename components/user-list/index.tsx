@@ -46,7 +46,7 @@ export default function UserList({ users, handleShowUserDetails }: UsersProps) {
 
   return (
     <>
-      <div className="py-2 px-4 max-w-md bg-white rounded-lg border shadow-md dark:bg-gray-800 dark:border-gray-700">
+      <div className="py-2 px-4 max-w-md max-h-screen overflow-auto bg-white rounded-lg border shadow-md dark:bg-gray-800 dark:border-gray-700">
         <div className="mt-3 flex justify-between items-center mb-4">
           <h3 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
             Users List
